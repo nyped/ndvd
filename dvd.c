@@ -82,7 +82,7 @@ draw(int color, int startx, int starty, int dx, int dy, int rainbow, int speed, 
 		}
 
 		if (rainbow == 1 && res == 1) {
-			color = (++color == 8)? 0 : color;
+			color = ((++color == 8)? 0 : color);
 			attron(COLOR_PAIR(color));
 		}
 

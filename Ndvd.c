@@ -8,7 +8,7 @@ void
 usage(void)
 {
 	printf(
-	"Usage: Ndvd -[Cc color]\n"
+	"Usage: Ndvd -[vhrc] -[x|n n] -[c color] -[s speed]\n"
 	"-x n             start at the n-th column\n"
 	"-y n             start at the n-th line\n"
 	"-c color         change the color of the box\n"
@@ -20,7 +20,6 @@ usage(void)
 	"-h               show available commands\n"
 	"-r               run in rainbow mode\n"
 	"-C               run in corner mode\n"
-
 	);
 }
 
@@ -29,8 +28,6 @@ version(void)
 {
 	printf(
 	"Ndvd v0.1\n\n"
-	"Copyright © 2020 Pedersen Ny Aina\n"
-	"Foss under GPL License !\n"
 	);
 }
 
