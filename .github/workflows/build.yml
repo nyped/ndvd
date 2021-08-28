@@ -1,0 +1,48 @@
+name: build package
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - name: build package
+      run: |
+        cat << EOF > entrypoint.sh
+        cd /build
+        useradd builduser -m
+        passwd -d builduser
+        pacman -Syu --noconfirm --needed sudo base-devel
+        echo -e 'builduser ALL=(ALL) ALL\n' >> /etc/sudoers
+        chown -R builduser:builduser ./
+        sudo -u builduser bash -c 'makepkg -si --noconfirm'
+        EOF
+        docker run -t -v $PWD:/build archlinux /bin/bash /build/entrypoint.sh
+
+    - name: upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ndvd
+        path: ${{ github.workspace }}/ndvd-*-x86_64.pkg.tar.zst
+
+    - name: create tag
+      id: create_tag
+      run: |
+        source PKGBUILD
+        echo "::set-output name=tag::${pkgver}-${pkgrel}"
+        echo $pkgver $pkgrel
+
+    - name: release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ${{ github.workspace }}/*.pkg.tar.zst
+        tag_name: ${{ steps.create_tag.outputs.tag }}
+        draft: false
+        body: |
+          ndvd, the famous dvd animation
+          Install it with pacman -U
+      env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
