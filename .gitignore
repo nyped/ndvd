@@ -1,6 +1,6 @@
 ndvd/*
 src/ndvd
 pkg
-ndvd
+ndvd.bin
 *.o
 *.tar.zst

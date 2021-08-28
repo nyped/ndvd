@@ -1,7 +1,7 @@
 # Maintainer: lennypeers <lennypeers+git at gmail>
 pkgname=ndvd
 pkgver=0.1
-pkgrel=3
+pkgrel=4
 pkgdesc="the famous dvd animation"
 arch=(x86_64)
 url="https://github.com/lennypeers/ndvd"

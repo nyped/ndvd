@@ -1,11 +1,13 @@
 CC ?= gcc
 CFLAGS ?= -Wall -g -Wall -Werror -pedantic
-DESTDIR ?= /usr
+PREFIX ?= /usr
+BINDIR ?= /bin
+DESTDIR =
 
 .PHONY: test clean all install uninstall
 
 all:
-	@echo available recipes: ndvd test clean {,un}install
+	@echo available recipes: ndvd.bin test clean {,un}install
 
 %.o: %.c
 	@${CC} -c ${CFLAGS} $<
@@ -17,10 +19,10 @@ test: ndvd.bin
 	@./$^
 
 install: ndvd.bin
-	@install -vDm0755 ndvd.bin "${DESTDIR}/bin/ndvd"
+	@install -vDm0755 ndvd.bin "${DESTDIR}/${PREFIX}/${BINDIR}/ndvd"
 
 uninstall:
 	@rm -v "${DESTDIR}/ndvd"
 
 clean:
-	@rm -v ndvd *.o
+	@rm -v ndvd.bin *.o
