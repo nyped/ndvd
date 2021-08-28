@@ -5,19 +5,19 @@ DESTDIR ?= /usr
 .PHONY: test clean all install uninstall
 
 all:
-	@echo available recipes: ndvd test clean
+	@echo available recipes: ndvd test clean {,un}install
 
 %.o: %.c
 	@${CC} -c ${CFLAGS} $<
 
-ndvd: src/ndvd.o src/dvd.o
+ndvd.bin: src/ndvd.o src/dvd.o
 	@${CC} -lncurses *.o -o $@
 
-test: ndvd
+test: ndvd.bin
 	@./$^
 
-install: ndvd
-	@install -vDm0755 ndvd "${DESTDIR}/bin/ndvd"
+install: ndvd.bin
+	@install -vDm0755 ndvd.bin "${DESTDIR}/bin/ndvd"
 
 uninstall:
 	@rm -v "${DESTDIR}/ndvd"
