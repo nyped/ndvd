@@ -1,6 +1,6 @@
 CC ?= gcc
 CFLAGS ?= -Wall -g -Wall -Werror -pedantic
-DESTDIR ?= /usr/bin
+DESTDIR ?= /usr
 
 .PHONY: test clean all install uninstall
 
@@ -17,7 +17,7 @@ test: ndvd
 	@./$^
 
 install: ndvd
-	@install -vDm0755 ndvd "${DESTDIR}/ndvd"
+	@install -vDm0755 ndvd "${DESTDIR}/bin/ndvd"
 
 uninstall:
 	@rm -v "${DESTDIR}/ndvd"
