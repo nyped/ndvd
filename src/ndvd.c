@@ -4,6 +4,8 @@
 #include <strings.h>
 #include "dvd.h"
 
+static const char v[] = "0.1";
+
 void
 usage(void)
 {
@@ -15,7 +17,7 @@ usage(void)
 	"   color = green | red | blue | white |\n"
 	"          yellow | cyan | magenta | black\n"
 	"-s speed         run in custom speed\n"
-	"   speed = slow | meduim | fast\n"
+	"   speed = slow | medium | fast\n"
 	"-v               show the version and misc infos\n"
 	"-h               show available commands\n"
 	"-r               run in rainbow mode\n"
@@ -27,7 +29,7 @@ void
 version(void)
 {
 	printf(
-	"Ndvd v0.1\n\n"
+	"Ndvd v%s\n\n", v
 	);
 }
 

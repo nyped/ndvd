@@ -1,18 +1,26 @@
-CC := gcc
-CFLAGS := -Wall -g -Wall -Werror -pedantic
+CC ?= gcc
+CFLAGS ?= -Wall -g -Wall -Werror -pedantic
+DESTDIR ?= /usr/bin
 
-all: Ndvd
+.PHONY: test clean all install uninstall
+
+all:
+	@echo available recipes: ndvd test clean
 
 %.o: %.c
-	${CC} -c ${CFLAGS} $<
+	@${CC} -c ${CFLAGS} $<
 
-Ndvd: Ndvd.o dvd.o
-	gcc -lncurses *.o -o $@
+ndvd: src/ndvd.o src/dvd.o
+	@${CC} -lncurses *.o -o $@
 
-.PHONY: test clean
+test: ndvd
+	@./$^
 
-test: Ndvd
-	./$^
+install: ndvd
+	@install -vDm0755 ndvd "${DESTDIR}/ndvd"
+
+uninstall:
+	@rm -v "${DESTDIR}/ndvd"
 
 clean:
-	rm Ndvd *.o
+	@rm -v ndvd *.o

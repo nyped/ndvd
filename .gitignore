@@ -1,2 +1,6 @@
+ndvd/*
+src/ndvd
+pkg
+ndvd
 *.o
-Ndvd
+*.tar.zst
