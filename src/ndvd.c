@@ -4,7 +4,7 @@
 #include <strings.h>
 #include "dvd.h"
 
-static const char v[] = "0.1";
+static const char v[] = "0.2";
 
 void
 usage(void)
@@ -39,7 +39,7 @@ main(int argc, char *argv[])
 	int color = 0;
 	int x = 0, y = 0;
 	int dx = 1, dy = 1;
-	int rainbow;
+	int rainbow = 0;
 	int speed = 200000;
 	int corner = 0;
 	char optchr;

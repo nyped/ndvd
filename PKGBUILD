@@ -1,6 +1,6 @@
 # Maintainer: lennypeers <lennypeers+git at gmail>
 pkgname=ndvd
-pkgver=0.1
+pkgver=0.2
 pkgrel=4
 pkgdesc="the famous dvd animation"
 arch=(x86_64)
