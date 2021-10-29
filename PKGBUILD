@@ -1,6 +1,6 @@
 # Maintainer: lennypeers <lennypeers+git at gmail>
 pkgname=ndvd
-pkgver=0.2
+pkgver=0.2.1
 pkgrel=1
 pkgdesc="the famous dvd animation"
 arch=(x86_64)
@@ -12,6 +12,6 @@ source=("git+https://github.com/lennypeers/ndvd.git")
 md5sums=('SKIP')
 
 package() {
-	cd "$srcdir/$pkgname"
-	make DESTDIR="$pkgdir/" install
+    cd "$srcdir/$pkgname"
+    make DESTDIR="$pkgdir/" install
 }
